@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel - Mensagens</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Painel de Mensagens</h1>
+
+    <table class="tabela">
+
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Mensagem</th>
+          <th>Data</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabela-mensagens">
+        <!-- JS vai preencher -->
+      </tbody>
+
+    </table>
+
+  </div>
+
+<script>
+
+  const senha = prompt("Digite a senha:");
+
+  function carregarMensagens() {
+    fetch(`/mensagens?senha=${senha}`)
+      .then(res => {
+        if (!res.ok) {
+          alert("Acesso negado");
+          throw new Error("Erro");
+        }
+        return res.json();
+      })
+      .then(data => {
+        const tabela = document.getElementById("tabela-mensagens");
+        tabela.innerHTML = "";
+
+        data.forEach(msg => {
+          const linha = `
+            <tr>
+              <td>${msg.nome}</td>
+              <td>${msg.email}</td>
+              <td>${msg.mensagem}</td>
+              <td>${msg.data}</td>
+              <td>
+                <button onclick="excluir(${msg.id})">Excluir</button>
+              </td>
+            </tr>
+          `;
+          tabela.innerHTML += linha;
+        });
+      });
+  }
+
+  function excluir(id) {
+    if (!confirm("Deseja excluir esta mensagem?")) return;
+
+    fetch(`/mensagens/${id}?senha=${senha}`, {
+      method: "DELETE"
+    })
+    .then(() => {
+      carregarMensagens(); // recarrega tabela
+    });
+  }
+
+  carregarMensagens();
+
+</script>
+
+</body>
+</html>
