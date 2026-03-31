@@ -1,4 +1,6 @@
-const form = document.getElementById("form-contato");
+// ==========================================
+// 1. LÓGICA DO MENU HAMBÚRGUER
+// ==========================================
 const menuToggle = document.getElementById('mobile-menu');
 const navMenu = document.querySelector('.menu ul');
 
@@ -8,34 +10,43 @@ if (menuToggle) {
   });
 }
 
-// Defina a URL base do seu servidor no Render
-const urlBase = "https://projeto-ciede.onrender.com";
+// ==========================================
+// 2. LÓGICA DO FORMULÁRIO DE CONTATO
+// ==========================================
+const form = document.getElementById("form-contato");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+if (form) { 
+  
+  // URL base movida para dentro (só carrega se precisar)
+  const urlBase = "https://projeto-ciede.onrender.com";
 
-  const nome = form.nome.value;
-  const email = form.email.value;
-  const mensagem = form.mensagem.value;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    // Apontando o fetch para o servidor na nuvem
-    const resposta = await fetch(`${urlBase}/contato`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ nome, email, mensagem }),
-    });
+    const nome = form.nome.value;
+    const email = form.email.value;
+    const mensagem = form.mensagem.value;
 
-    const dados = await resposta.json();
+    try {
+      // Apontando o fetch para o servidor na nuvem
+      const resposta = await fetch(`${urlBase}/contato`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nome, email, mensagem }),
+      });
 
-    // Mostra a mensagem de sucesso que vem do backend
-    alert(dados.mensagem);
-    form.reset();
+      const dados = await resposta.json();
 
-  } catch (erro) {
-    console.error("Erro na requisição:", erro);
-    alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
-  }
-});
+      // Mostra a mensagem de sucesso que vem do backend
+      alert(dados.mensagem);
+      form.reset();
+
+    } catch (erro) {
+      console.error("Erro na requisição:", erro);
+      alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
+    }
+  });
+
+}
