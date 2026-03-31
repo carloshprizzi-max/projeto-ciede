@@ -868,6 +868,8 @@ button:hover {
    align-items: center;
    width: 100%;
    position: relative;
+   padding: 20px;
+   box-sizing: border-box;
 }
 
   /* Mostra as 3 barrinhas do botão apenas no celular */
