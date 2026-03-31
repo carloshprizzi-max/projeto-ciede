@@ -443,34 +443,6 @@ button:hover {
 }
 
 /* =========================
-   RESPONSIVO
-========================= */
-@media (max-width: 768px) {
-
-  .header-content {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .menu ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cards,
-  .eventos-grid,
-  .parcerias-grid,
-  .edicoes,
-  .values {
-    flex-direction: column;
-  }
-
-  .hero h1 {
-    font-size: 26px;
-  }
-}
-
-/* =========================
    AJUSTES QUEM SOMOS (NOVO)
 ========================= */
 .text-center {
@@ -843,13 +815,6 @@ button:hover {
   font-size: 14px;
 }
 
-/* RESPONSIVO */
-@media (max-width: 768px) {
-  .contato-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* =========================
    PAINEL ADMIN
 ========================= */
@@ -888,4 +853,74 @@ button:hover {
 
 .tabela button:hover {
   background-color: #c9302c;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  /* ------------------------------------------- */
+  /*    NOVO HEADER E MENU HAMBÚRGUER            */
+  /* ------------------------------------------- */
+  .header-content {
+    display: flex;
+    flex-direction: row; /* Mantém logo e botão lado a lado */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Mostra as 3 barrinhas do botão apenas no celular */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+
+  .menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff; /* Cor das barras */
+    transition: all 0.3s ease;
+  }
+
+  /* Esconde a lista original e prepara a janela que vai descer */
+  .menu ul {
+    display: none; /* Fica escondido até clicar */
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%; /* Desce logo abaixo do header */
+    left: 0;
+    background-color: #0b1f38; /* Fundo azul escuro */
+    padding: 20px 0;
+    z-index: 1000;
+  }
+
+  .menu ul li {
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  /* Classe ativada pelo JavaScript quando clica no botão */
+  .menu ul.active {
+    display: flex;
+  }
+
+  .cards,
+  .eventos-grid,
+  .parcerias-grid,
+  .edicoes,
+  .values {
+    flex-direction: column;
+  }
+
+  .contato-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
 }

@@ -1,4 +1,12 @@
 const form = document.getElementById("form-contato");
+const menuToggle = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.menu ul');
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}
 
 // Defina a URL base do seu servidor no Render
 const urlBase = "https://projeto-ciede.onrender.com";
