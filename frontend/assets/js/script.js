@@ -1,5 +1,8 @@
 const form = document.getElementById("form-contato");
 
+// Defina a URL base do seu servidor no Render
+const urlBase = "https://projeto-ciede.onrender.com";
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -8,7 +11,8 @@ form.addEventListener("submit", async (e) => {
   const mensagem = form.mensagem.value;
 
   try {
-    const resposta = await fetch("/contato", {
+    // Apontando o fetch para o servidor na nuvem
+    const resposta = await fetch(`${urlBase}/contato`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,10 +22,12 @@ form.addEventListener("submit", async (e) => {
 
     const dados = await resposta.json();
 
+    // Mostra a mensagem de sucesso que vem do backend
     alert(dados.mensagem);
     form.reset();
 
   } catch (erro) {
-    alert("Erro ao enviar mensagem");
+    console.error("Erro na requisição:", erro);
+    alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
   }
 });

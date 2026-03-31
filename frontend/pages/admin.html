@@ -34,11 +34,12 @@
   </div>
 
 <script>
-
   const senha = prompt("Digite a senha:");
+  // Defina a sua URL base do Render aqui para facilitar
+  const urlBase = "https://projeto-ciede.onrender.com";
 
   function carregarMensagens() {
-    fetch(`/mensagens?senha=${senha}`)
+    fetch(`${urlBase}/mensagens?senha=${senha}`)
       .then(res => {
         if (!res.ok) {
           alert("Acesso negado");
@@ -51,12 +52,15 @@
         tabela.innerHTML = "";
 
         data.forEach(msg => {
+          // Formatando a data do banco
+          let dataFormatada = msg.data_envio ? new Date(msg.data_envio).toLocaleDateString('pt-BR') : 'Sem data';
+
           const linha = `
             <tr>
               <td>${msg.nome}</td>
               <td>${msg.email}</td>
               <td>${msg.mensagem}</td>
-              <td>${msg.data}</td>
+              <td>${dataFormatada}</td>
               <td>
                 <button onclick="excluir(${msg.id})">Excluir</button>
               </td>
@@ -70,7 +74,7 @@
   function excluir(id) {
     if (!confirm("Deseja excluir esta mensagem?")) return;
 
-    fetch(`/mensagens/${id}?senha=${senha}`, {
+    fetch(`${urlBase}/mensagens/${id}?senha=${senha}`, {
       method: "DELETE"
     })
     .then(() => {
@@ -79,7 +83,6 @@
   }
 
   carregarMensagens();
-
 </script>
 
 </body>
