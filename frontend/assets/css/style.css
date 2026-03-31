@@ -886,6 +886,14 @@ button:hover {
     transition: all 0.3s ease;
   }
 
+     /* Tira a caixa mãe do caminho para o hambúrguer colar na direita */
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+  
   /* Esconde a lista original e prepara a janela que vai descer */
   .menu ul {
     display: none; /* Fica escondido até clicar */
