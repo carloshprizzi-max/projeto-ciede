@@ -863,20 +863,21 @@ button:hover {
   /*    NOVO HEADER E MENU HAMBÚRGUER            */
   /* ------------------------------------------- */
   .header-content {
-    display: flex;
-    flex-direction: row; /* Mantém logo e botão lado a lado */
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   width: 100%;
+   position: relative;
+}
 
   /* Mostra as 3 barrinhas do botão apenas no celular */
   .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-  }
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   gap: 5px;
+   margin-left: auto; /* Esse é o ímã que puxa ele para a direita! */
+}
 
   .menu-toggle .bar {
     width: 25px;
