@@ -1,4 +1,4 @@
-const service = require("./src/services/mensagemService");
+const service = require("../services/mensagemService");
 
 exports.criar = async (req, res) => {
   try {

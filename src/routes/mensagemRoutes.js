@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require("./src/controllers/mensagemController");
+const controller = require("../controllers/mensagemController");
 
 router.post("/contato", controller.criar);
 router.get("/mensagens", controller.listar);

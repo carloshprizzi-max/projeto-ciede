@@ -1,4 +1,4 @@
-const model = require("./src/models/mensagemModel");
+const model = require("../models/mensagemModel");
 
 exports.criar = async (nome, email, mensagem) => {
   if (!nome || !email || !mensagem) {

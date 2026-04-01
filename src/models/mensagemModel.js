@@ -1,4 +1,4 @@
-const db = require("./src/config/db");
+const db = require("../config/db");
 
 exports.create = (nome, email, mensagem) => {
   const sql = `
