@@ -30,11 +30,6 @@ exports.listar = async (req, res) => {
 exports.deletar = async (req, res) => {
   try {
     const { id } = req.params;
-    const senha = req.query.senha;
-
-    if (senha !== "1234") {
-      return res.status(403).send("Acesso negado");
-    }
 
     await service.deletar(id);
 
