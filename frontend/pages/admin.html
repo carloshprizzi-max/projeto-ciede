@@ -53,47 +53,71 @@
   }
 
   async function carregarMensagens() {
-    try {
-      const res = await fetch(`${API}/mensagens`, {
-        headers: getHeaders()
-      });
+  try {
+    const res = await fetch(`${API}/mensagens`, {
+      headers: getHeaders()
+    });
 
-      console.log("STATUS:", res.status);
+    console.log("STATUS:", res.status);
 
-      if (res.status === 401 || res.status === 403) {
-        alert("Sessão expirada");
-        logout();
-        return;
-      }
-
-      const data = await res.json();
-
-      const tabela = document.getElementById("tabela-mensagens");
-      tabela.innerHTML = "";
-
-      data.forEach(msg => {
-        const dataFormatada = msg.data
-          ? new Date(msg.data).toLocaleDateString('pt-BR')
-          : "Sem data";
-
-        tabela.innerHTML += `
-          <tr>
-            <td>${msg.nome}</td>
-            <td>${msg.email}</td>
-            <td>${msg.mensagem}</td>
-            <td>${dataFormatada}</td>
-            <td>
-              <button onclick="excluir(${msg.id})">Excluir</button>
-            </td>
-          </tr>
-        `;
-      });
-
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao carregar mensagens");
+    // 1. Tratamento de token expirado ou inválido
+    if (res.status === 401 || res.status === 403) {
+      alert("Sessão expirada. Faça login novamente.");
+      logout();
+      return;
     }
+
+    // 2. NOVA TRAVA: Interrompe a execução se o status for 500, 404, etc.
+    if (!res.ok) {
+      throw new Error(`Erro no servidor. Status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    // 3. TRAVA EXTRA: Garante que os dados são uma lista antes de tentar iterar
+    if (!Array.isArray(data)) {
+      throw new Error("Os dados recebidos não estão no formato de lista (array).");
+    }
+
+    const tabela = document.getElementById("tabela-mensagens");
+
+    // Tratamento para quando não houver mensagens no banco
+    if (data.length === 0) {
+      tabela.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center;">Nenhuma mensagem recebida ainda.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    // 4. OTIMIZAÇÃO: Monta todo o HTML na memória antes de jogar na tela
+    const linhasHTML = data.map(msg => {
+      const dataFormatada = msg.data
+        ? new Date(msg.data).toLocaleDateString('pt-BR')
+        : "Sem data";
+
+      return `
+        <tr>
+          <td>${msg.nome}</td>
+          <td>${msg.email}</td>
+          <td>${msg.mensagem}</td>
+          <td>${dataFormatada}</td>
+          <td>
+            <button onclick="excluir(${msg.id})">Excluir</button>
+          </td>
+        </tr>
+      `;
+    }).join(''); // Junta o array gerado pelo map em uma única string de texto
+
+    // Atualiza a tabela uma única vez (melhor performance)
+    tabela.innerHTML = linhasHTML;
+
+  } catch (err) {
+    console.error("Erro na função carregarMensagens:", err);
+    alert("Erro ao carregar as mensagens. Verifique o console do navegador.");
   }
+}
 
   async function excluir(id) {
     if (!confirm("Deseja excluir esta mensagem?")) return;
