@@ -14,12 +14,6 @@ exports.criar = async (req, res) => {
 
 exports.listar = async (req, res) => {
   try {
-    const senha = req.query.senha;
-
-    if (senha !== "1234") {
-      return res.status(403).send("Acesso negado");
-    }
-
     const dados = await service.listar();
     res.json(dados);
   } catch (err) {
