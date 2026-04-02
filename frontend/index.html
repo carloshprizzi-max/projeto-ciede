@@ -22,60 +22,21 @@
 </head>
 
 <body>
-
-<!-- <header class="header">
-  <div class="container header-content">
-
-    <div class="logo">
-      <h1>CIEDE</h1>
-    </div>
-
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-
-    <nav class="menu">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/pages/quem-somos.html">Quem Somos</a></li>
-        <li><a href="/pages/revista.html">Revista RIEDE</a></li>
-        <li><a href="/pages/pesquisas.html">Pesquisa e Publicações</a></li>
-        <li><a href="/pages/eventos.html">Eventos</a></li>
-        <li><a href="/pages/parcerias.html">Parcerias</a></li>
-        <li><a href="/pages/contato.html">Contato</a></li>
-      </ul>
-    </nav>
-
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="container">
-    <h1>
-      Centro Internacional de Estudos de Direito e Economia
-    </h1>
-
-    <p>
-      Produção científica, pesquisa interdisciplinar e integração acadêmica em nível internacional.
-    </p>
-
-    <a href="/pages/contato.html" class="btn">
-      Entrar em contato
-    </a>
-  </div>
-</section> -->
-<header class="navbar-premium">
+  
+  <header class="navbar-premium">
     <div class="navbar-container">
         <a href="#" class="brand-link">
             <img src="../img/logo1.png" alt="Logo CIEDE" class="navbar-logo">
             <span class="brand-text">CIEDE</span>
         </a>
         
-        <nav class="navbar-links">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        
+        <nav class="navbar-links" id="nav-links">
             <a href="#" class="active">Home</a>
             <a href="#">Quem Somos</a>
             <a href="#">Revista RIEDE</a>
@@ -181,7 +142,15 @@
     <p>© 2026 CIEDE - Todos os direitos reservados</p>
   </div>
 </footer>
-  
+
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script> 
 <script src="js/script.js" defer></script>
 </body>
 </html>
