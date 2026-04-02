@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
                 // ATENÇÃO: Ajustei a rota para '/mensagens' que é a que criamos no seu backend
-                const resposta = await fetch(`${urlBase}/mensagens`, {
+                const resposta = await fetch(`${urlBase}/contato`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
