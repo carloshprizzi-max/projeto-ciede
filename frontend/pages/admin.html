@@ -5,29 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CIEDE | Painel Administrativo</title>
   <link rel="icon" type="image/png" href="../img/logo1.png">
-  <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body class="admin-dashboard">
 
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <img src="../img/logo1.png" alt="Logo CIEDE" class="logo-admin">
-      <h2>CIEDE</h2>
-      <p>Gestão Institucional</p>
-    </div>
-    
-    <nav class="sidebar-nav">
-      <a href="#" id="link-mensagens" class="nav-item active" onclick="mudarAba('mensagens')">Mensagens</a>
-      <a href="#" id="link-eventos" class="nav-item" onclick="mudarAba('eventos')">Eventos</a>
-      <a href="#" class="nav-item disabled" title="Em breve">Revista (Breve)</a>
-    </nav>
+<aside class="sidebar">
+      
+      <div>
+        <img src="../img/logo1.png" alt="Logo CIEDE" class="logo-admin">
+        <div class="sidebar-brand">CIEDE</div>
+      </div>
 
-    <div class="sidebar-footer">
-      <button onclick="logout()" class="btn-logout">Sair do Sistema</button>
-    </div>
-  </aside>
+      <nav class="sidebar-nav">
+        <a href="#" id="link-mensagens" class="nav-item active" onclick="mudarAba('mensagens')">Mensagens</a>
+        <a href="#" id="link-eventos" class="nav-item" onclick="mudarAba('eventos')">Eventos</a>
+        <a href="#" class="nav-item disabled" title="Em breve">Revista (Breve)</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-online">
+          <span class="status-dot"></span> Online
+        </div>
+        <a href="#" class="btn-logout" id="btn-sair">Sair do Sistema</a>
+      </div>
+
+    </aside>
 
   <main class="main-content">
     

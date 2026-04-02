@@ -6,24 +6,13 @@
   <title>Contato - CIEDE</title>
   <link rel="icon" type="image/png" href="../img/logo1.png">
 
-  <meta name="description" content="O CIEDE é um centro dedicado à pesquisa, publicações e eventos nas áreas de Direito e Economia, promovendo o debate acadêmico e institucional em Curitiba e no Brasil.">
-  <meta name="keywords" content="CIEDE, Direito, Economia, Pesquisa Acadêmica, Revista RIEDE, Eventos, Curitiba">
-  <meta name="author" content="CIEDE">
-  <meta name="robots" content="index, follow">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="CIEDE - Centro Internacional de Estudos de Direito e Economia">
-  <meta property="og:description" content="Acompanhe nossas pesquisas, publicações e eventos institucionais.">
-  <meta property="og:url" content="https://projeto-ciede.onrender.com/">
-  <meta property="og:image" content="https://projeto-ciede.onrender.com/img/logo1.png">
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
 <header class="navbar-premium">
     <div class="navbar-container">
         <a href="../index.html" class="brand-link">
@@ -39,69 +28,90 @@
         
         <nav class="navbar-links" id="nav-links">
             <a href="../index.html">Home</a>
-            <a href="/pages/quem-somos.html">Quem Somos</a>
-            <a href="/pages/revista.html">Revista RIEDE</a>
-            <a href="/pages/pesquisas.html">Pesquisa e Publicações</a>
-            <a href="/pages/eventos.html">Eventos</a>
-            <a href="/pages/parcerias.html">Parcerias</a>
-            <a href="/pages/contato.html" class="btn-nav-contato">Contato</a>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="revista.html">Revista RIEDE</a>
+            <a href="pesquisas.html">Pesquisa e Publicações</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="parcerias.html">Parcerias</a>
+            <a href="contato.html" class="btn-nav-contato" style="background-color: var(--dourado-ciede); color: var(--azul-ciede) !important;">Contato</a>
         </nav>
     </div>
 </header>
 
-  <!-- CONTEÚDO -->
- <<main>
+<main>
+
   <section class="internal-hero">
     <h1>Fale Conosco</h1>
+    <p style="color: #cbd5e1; margin-top: 10px; font-size: 1.1rem;">Envie suas dúvidas, sugestões ou propostas de parceria</p>
   </section>
 
   <section class="premium-section">
-    <div class="premium-container" style="max-width: 800px;">
+    <div class="premium-container">
       
-      <div class="premium-text-block">
-        <h2>Envie sua Mensagem</h2>
-        <p style="margin-bottom: 30px;">Tem alguma dúvida sobre nossos eventos, revistas ou parcerias? Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+      <div class="premium-grid" style="grid-template-columns: 1fr 1.5fr; align-items: start;">
         
-        <form id="form-contato" style="display: grid; gap: 20px;">
+        <div class="premium-card" style="background-color: var(--azul-ciede); color: #fff; border: none; padding: 40px 30px;">
+          <h3 style="color: var(--dourado-ciede); margin-bottom: 25px; font-size: 1.3rem;">Informações</h3>
           
-          <div class="input-group">
-            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">NOME COMPLETO</label>
-            <input type="text" id="nome" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" required>
-          </div>
-          
-          <div class="input-group">
-            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">E-MAIL</label>
-            <input type="email" id="email" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" required>
+          <div style="margin-bottom: 20px;">
+            <strong style="display: block; color: #fff; margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase;">E-mail:</strong>
+            <span style="color: #cbd5e1;">contato@ciede.com</span>
           </div>
 
-          <div class="input-group">
-            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">MENSAGEM</label>
-            <textarea id="mensagem" rows="5" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; resize: vertical;" required></textarea>
+          <div style="margin-bottom: 20px;">
+            <strong style="display: block; color: #fff; margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase;">Endereço:</strong>
+            <span style="color: #cbd5e1; line-height: 1.5;">Curitiba, PR<br>Brasil</span>
           </div>
 
-          <button type="submit" id="btn-enviar-contato" class="btn-gold" style="border: none; cursor: pointer; width: 100%; margin-top: 10px;">Enviar Mensagem</button>
-        </form>
+          <div>
+            <strong style="display: block; color: #fff; margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase;">Atendimento:</strong>
+            <span style="color: #cbd5e1; line-height: 1.5;">Segunda a Sexta<br>09h às 18h</span>
+          </div>
+        </div>
+
+        <div class="premium-text-block" style="margin-bottom: 0;">
+          <h2 style="margin-bottom: 10px;">Envie uma Mensagem</h2>
+          <p style="margin-bottom: 30px;">Preencha o formulário abaixo e nossa equipe retornará o mais breve possível.</p>
+          
+          <form id="form-contato" style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <div>
+              <label for="nome" style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--texto-claro); margin-bottom: 8px;">NOME COMPLETO</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required style="width: 100%; padding: 14px; border: 1px solid var(--borda-cinza); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none;">
+            </div>
+
+            <div>
+              <label for="email" style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--texto-claro); margin-bottom: 8px;">E-MAIL</label>
+              <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required style="width: 100%; padding: 14px; border: 1px solid var(--borda-cinza); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none;">
+            </div>
+
+            <div>
+              <label for="mensagem" style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--texto-claro); margin-bottom: 8px;">MENSAGEM</label>
+              <textarea id="mensagem" name="mensagem" rows="5" placeholder="Como podemos ajudar?" required style="width: 100%; padding: 14px; border: 1px solid var(--borda-cinza); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn-gold" style="padding: 16px; font-size: 1.05rem; margin-top: 10px; width: 100%;">Enviar Mensagem</button>
+          </form>
+
+        </div>
 
       </div>
+
     </div>
   </section>
+
 </main>
 
-  <!-- FOOTER -->
- <footer class="footer">
+<footer class="footer">
   <div class="container footer-content">
-
     <div class="footer-col">
       <h3>CIEDE</h3>
-      <p>
-        Centro Internacional de Estudos de Direito e Economia.
-      </p>
+      <p>Centro Internacional de Estudos de Direito e Economia.</p>
     </div>
-
     <div class="footer-col">
       <h3>Navegação</h3>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="../index.html">Home</a></li>
         <li><a href="quem-somos.html">Quem Somos</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="pesquisas.html">Pesquisa e Publicações</a></li>
@@ -109,73 +119,21 @@
         <li><a href="parcerias.html">Parcerias</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h3>Contato</h3>
       <p>Email: contato@ciede.com</p>
       <p>Curitiba - PR</p>
     </div>
-
     <div class="footer-col">
       <h3>Redes</h3>
-      <a href="https://instagram.com" target="_blank">
-        Instagram
-      </a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     <p>© 2026 CIEDE - Todos os direitos reservados</p>
   </div>
 </footer>
 
-  <script>
-    // Script do Menu
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-    if (mobileMenu && navLinks) {
-        mobileMenu.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-    }
-
-    // Script do Formulário de Mensagem
-    const formContato = document.getElementById('form-contato');
-    const btnEnviar = document.getElementById('btn-enviar-contato');
-
-    formContato.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const textoOriginal = btnEnviar.innerText;
-        btnEnviar.innerText = 'Enviando...';
-        btnEnviar.disabled = true;
-
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
-        const mensagem = document.getElementById('mensagem').value;
-
-        try {
-            const res = await fetch('https://projeto-ciede.onrender.com/mensagens', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome, email, mensagem })
-            });
-
-            if (res.ok) {
-                alert('Sua mensagem foi enviada com sucesso! Retornaremos em breve.');
-                formContato.reset();
-            } else {
-                alert('Ocorreu um erro. Verifique os dados e tente novamente.');
-            }
-        } catch (error) {
-            console.error('Erro:', error);
-            alert('Erro de conexão com o servidor.');
-        } finally {
-            btnEnviar.innerText = textoOriginal;
-            btnEnviar.disabled = false;
-        }
-    });
-</script>
-  <script src="../js/script.js"></script>
-
+<script src="../js/script.js" defer></script>
 </body>
 </html>

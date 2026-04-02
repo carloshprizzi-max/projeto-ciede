@@ -6,46 +6,46 @@
     <title>CIEDE | Acesso Restrito</title>
     <link rel="icon" type="image/png" href="../img/logo1.png">
     
-    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
-<body class="pagina-login"> <div class="login-container">
+
+<body class="pagina-login"> 
         
-        <div class="login-brand">
-            <div class="brand-content">
-                <img src="../img/logo1.png" alt="Logo CIEDE" class="logo-login">
-                <h1>CIEDE</h1>
-                <p>Centro Internacional de Estudos<br>de Direito e Economia</p>
-                <div class="divider"></div>
-                <span class="badge">Painel de Gestão</span>
-            </div>
+    <div class="login-brand">
+        <div class="brand-content">
+            <img src="../img/logo1.png" alt="Logo CIEDE" class="logo-login">
+            <h1>CIEDE</h1>
+            <p>Centro Internacional de Estudos<br>de Direito e Economia</p>
+            <div class="divider"></div>
+            <span class="badge">Painel de Gestão</span>
         </div>
+    </div>
 
-        <div class="login-form-section">
-            <div class="form-wrapper">
-                <h2>Acesso Restrito</h2>
-                <p class="subtitle">Insira suas credenciais para gerenciar a plataforma.</p>
+    <div class="login-form-container">
+        <div class="login-box">
+            <h2>Acesso Restrito</h2>
+            <p class="subtitle" style="color: var(--texto-claro); margin-bottom: 30px;">Insira suas credenciais para gerenciar a plataforma.</p>
 
-                <form id="loginForm">
-                    <div class="input-group">
-                        <label for="email">E-mail Institucional</label>
-                        <input type="email" id="email" required placeholder="admin@ciede.com">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" required placeholder="senha...">
-                    </div>
-
-                    <button type="submit" id="btn-login">Entrar no Sistema</button>
-                </form>
-                
-                <div class="form-footer">
-                    <a href="#">Esqueceu a senha?</a>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">E-mail Institucional</label>
+                    <input type="email" id="email" required placeholder="admin@ciede.com">
                 </div>
+                
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" required placeholder="senha...">
+                </div>
+
+                <button type="submit" id="btn-login" class="btn-gold">Entrar no Sistema</button>
+            </form>
+            
+            <div class="form-footer" style="text-align: center; margin-top: 20px;">
+                <a href="#" style="color: var(--texto-claro); text-decoration: none; font-size: 0.85rem;">Esqueceu a senha?</a>
             </div>
         </div>
-        
     </div>
 
     <script>

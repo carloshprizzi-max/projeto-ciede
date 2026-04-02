@@ -1,52 +1,72 @@
-// ==========================================
-// 1. LÓGICA DO MENU HAMBÚRGUER
-// ==========================================
-const menuToggle = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.menu ul');
+/* =========================================
+   SCRIPT.JS - Funções Globais do Site Público
+========================================= */
 
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // ==========================================
+    // 1. LÓGICA DO MENU HAMBÚRGUER (ATUALIZADA)
+    // ==========================================
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
 
-// ==========================================
-// 2. LÓGICA DO FORMULÁRIO DE CONTATO
-// ==========================================
-const form = document.getElementById("form-contato");
-
-if (form) { 
-  
-  // URL base movida para dentro (só carrega se precisar)
-  const urlBase = "https://projeto-ciede.onrender.com";
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const nome = form.nome.value;
-    const email = form.email.value;
-    const mensagem = form.mensagem.value;
-
-    try {
-      // Apontando o fetch para o servidor na nuvem
-      const resposta = await fetch(`${urlBase}/contato`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nome, email, mensagem }),
-      });
-
-      const dados = await resposta.json();
-
-      // Mostra a mensagem de sucesso que vem do backend
-      alert(dados.mensagem);
-      form.reset();
-
-    } catch (erro) {
-      console.error("Erro na requisição:", erro);
-      alert("Erro ao enviar mensagem. Tente novamente mais tarde.");
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
     }
-  });
 
-}
+    // ==========================================
+    // 2. LÓGICA DO FORMULÁRIO DE CONTATO (MANTIDA E MELHORADA)
+    // ==========================================
+    const form = document.getElementById("form-contato");
+
+    if (form) { 
+        const urlBase = "https://projeto-ciede.onrender.com";
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Pega o botão para dar o efeito de "Enviando..."
+            const btnEnviar = form.querySelector('button[type="submit"]');
+            const textoOriginal = btnEnviar ? btnEnviar.innerText : 'Enviar';
+            
+            if(btnEnviar) {
+                btnEnviar.innerText = 'Enviando...';
+                btnEnviar.disabled = true;
+            }
+
+            const nome = form.nome.value;
+            const email = form.email.value;
+            const mensagem = form.mensagem.value;
+
+            try {
+                // ATENÇÃO: Ajustei a rota para '/mensagens' que é a que criamos no seu backend
+                const resposta = await fetch(`${urlBase}/mensagens`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ nome, email, mensagem }),
+                });
+
+                if (resposta.ok) {
+                    alert("Sua mensagem foi enviada com sucesso! Retornaremos em breve.");
+                    form.reset();
+                } else {
+                    alert("Ocorreu um erro ao processar. Tente novamente.");
+                }
+
+            } catch (erro) {
+                console.error("Erro na requisição:", erro);
+                alert("Erro ao enviar mensagem. Verifique sua conexão e tente novamente.");
+            } finally {
+                // Volta o botão ao normal
+                if(btnEnviar) {
+                    btnEnviar.innerText = textoOriginal;
+                    btnEnviar.disabled = false;
+                }
+            }
+        });
+    }
+});

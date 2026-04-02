@@ -6,18 +6,9 @@
   <title>Pesquisa e Publicações - CIEDE</title>
   <link rel="icon" type="image/png" href="../img/logo1.png">
 
-  <meta name="description" content="O CIEDE é um centro dedicado à pesquisa, publicações e eventos nas áreas de Direito e Economia, promovendo o debate acadêmico e institucional em Curitiba e no Brasil.">
-  <meta name="keywords" content="CIEDE, Direito, Economia, Pesquisa Acadêmica, Revista RIEDE, Eventos, Curitiba">
-  <meta name="author" content="CIEDE">
-  <meta name="robots" content="index, follow">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="CIEDE - Centro Internacional de Estudos de Direito e Economia">
-  <meta property="og:description" content="Acompanhe nossas pesquisas, publicações e eventos institucionais.">
-  <meta property="og:url" content="https://projeto-ciede.onrender.com/">
-  <meta property="og:image" content="https://projeto-ciede.onrender.com/img/logo1.png">
-  <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 
 <body>
@@ -37,59 +28,53 @@
         
         <nav class="navbar-links" id="nav-links">
             <a href="../index.html">Home</a>
-            <a href="/pages/quem-somos.html">Quem Somos</a>
-            <a href="/pages/revista.html">Revista RIEDE</a>
-            <a href="/pages/pesquisas.html">Pesquisa e Publicações</a>
-            <a href="/pages/eventos.html">Eventos</a>
-            <a href="/pages/parcerias.html">Parcerias</a>
-            <a href="/pages/contato.html" class="btn-nav-contato">Contato</a>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="revista.html">Revista RIEDE</a>
+            <a href="pesquisas.html" class="active">Pesquisa e Publicações</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="parcerias.html">Parcerias</a>
+            <a href="contato.html" class="btn-nav-contato">Contato</a>
         </nav>
     </div>
 </header>
 
 <main>
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <h1>Pesquisa e Publicações</h1>
-      <p>Produção científica do CIEDE</p>
-    </div>
+  <section class="internal-hero">
+    <h1>Pesquisa e Publicações</h1>
+    <p style="color: #cbd5e1; margin-top: 10px; font-size: 1.1rem;">Produção científica do CIEDE</p>
   </section>
 
-  <!-- BUSCA -->
-  <section class="section bg-light">
-    <div class="container">
+  <section class="premium-section">
+    <div class="premium-container">
+      
+      <div style="margin-bottom: 50px; text-align: center;">
+          <input type="text" placeholder="Buscar artigos por título, autor ou palavra-chave..." 
+                 style="width: 100%; max-width: 700px; padding: 16px 25px; border: 1px solid var(--borda-cinza); border-radius: 30px; font-size: 1rem; font-family: 'Inter', sans-serif; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s;">
+      </div>
 
-      <input type="text" placeholder="Buscar artigos..." class="search">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+          <h2 style="color: var(--azul-ciede); margin: 0; font-size: 1.8rem;">Publicações Recentes</h2>
+      </div>
 
-    </div>
-  </section>
-
-  <!-- LISTA DE PUBLICAÇÕES -->
-  <section class="section">
-    <div class="container">
-
-      <h2>Publicações</h2>
-
-      <div class="lista-publicacoes">
-
-        <div class="publicacao">
-          <h3>Análise Econômica do Direito e Regulação</h3>
-          <p class="autor">Fernando Araújo • 2025</p>
-          <p class="resumo">
-            Estudo sobre a aplicação da análise econômica na regulação de mercados.
-          </p>
-          <a href="#">Ler artigo</a>
+      <div class="premium-grid">
+        
+        <div class="premium-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: block; color: var(--dourado-ciede); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px;">Fernando Araújo • 2025</span>
+            <h3 style="color: var(--azul-ciede); font-size: 1.3rem; margin-bottom: 15px; line-height: 1.4;">Análise Econômica do Direito e Regulação</h3>
+            <p style="color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;">Estudo sobre a aplicação da análise econômica na regulação de mercados.</p>
+          </div>
+          <a href="#" class="btn-outline" style="color: var(--azul-ciede); border-color: var(--borda-cinza); padding: 10px 20px; font-size: 0.9rem; text-align: center;">Ler artigo completo</a>
         </div>
 
-        <div class="publicacao">
-          <h3>Eficiência e Direito Contratual</h3>
-          <p class="autor">Ricardo Lupion • 2026</p>
-          <p class="resumo">
-            Discussão sobre eficiência econômica aplicada ao direito contratual.
-          </p>
-          <a href="#">Ler artigo</a>
+        <div class="premium-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: block; color: var(--dourado-ciede); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px;">Ricardo Lupion • 2026</span>
+            <h3 style="color: var(--azul-ciede); font-size: 1.3rem; margin-bottom: 15px; line-height: 1.4;">Eficiência e Direito Contratual</h3>
+            <p style="color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;">Discussão sobre eficiência econômica aplicada ao direito contratual.</p>
+          </div>
+          <a href="#" class="btn-outline" style="color: var(--azul-ciede); border-color: var(--borda-cinza); padding: 10px 20px; font-size: 0.9rem; text-align: center;">Ler artigo completo</a>
         </div>
 
       </div>
@@ -101,18 +86,14 @@
 
 <footer class="footer">
   <div class="container footer-content">
-
     <div class="footer-col">
       <h3>CIEDE</h3>
-      <p>
-        Centro Internacional de Estudos de Direito e Economia.
-      </p>
+      <p>Centro Internacional de Estudos de Direito e Economia.</p>
     </div>
-
     <div class="footer-col">
       <h3>Navegação</h3>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="../index.html">Home</a></li>
         <li><a href="quem-somos.html">Quem Somos</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="pesquisas.html">Pesquisa e Publicações</a></li>
@@ -120,37 +101,22 @@
         <li><a href="parcerias.html">Parcerias</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h3>Contato</h3>
       <p>Email: contato@ciede.com</p>
       <p>Curitiba - PR</p>
     </div>
-
     <div class="footer-col">
       <h3>Redes</h3>
-      <a href="https://instagram.com" target="_blank">
-        Instagram
-      </a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     <p>© 2026 CIEDE - Todos os direitos reservados</p>
   </div>
 </footer>
 
-<script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-
-    if (mobileMenu && navLinks) {
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-</script>
-<script src="../js/script.js" defer></script>
+  <script src="../js/script.js" defer></script>
+  
 </body>
 </html>

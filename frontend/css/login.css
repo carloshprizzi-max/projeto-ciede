@@ -1,0 +1,161 @@
+/* =========================================
+   LOGIN.CSS - Layout Exclusivo
+========================================= */
+
+/* Contêiner principal que divide a tela ao meio */
+.pagina-login {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* --- METADE ESQUERDA: IDENTIDADE VISUAL --- */
+.pagina-login .login-brand {
+    flex: 1; /* Ocupa 50% da tela */
+    background-image: linear-gradient(rgba(10, 27, 42, 0.85), rgba(10, 27, 42, 0.95)), url('../img/bg-direito.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.pagina-login .brand-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;   
+}
+
+.logo-login {
+    max-width: 170px;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.5)); 
+}
+
+.pagina-login .brand-content h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--dourado-ciede); 
+    margin-top: 0; 
+    margin-bottom: 10px;
+}
+
+.pagina-login .brand-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.9;
+    margin-bottom: 30px; 
+    line-height: 1.5;
+}
+
+.pagina-login .divider {
+    height: 3px;
+    width: 60px;
+    background-color: var(--dourado-ciede);
+    margin: 30px 0;
+}
+
+.pagina-login .badge {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--dourado-ciede);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- METADE DIREITA: FORMULÁRIO DE ACESSO --- */
+.pagina-login .login-form-container {
+    flex: 1; /* Ocupa os outros 50% da tela */
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h2 {
+    font-size: 2rem;
+    color: var(--azul-ciede);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.login-box p {
+    color: var(--texto-claro);
+    margin-bottom: 30px;
+}
+
+.login-box .input-group {
+    margin-bottom: 20px;
+}
+
+.login-box label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--texto-claro);
+    margin-bottom: 8px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda-cinza);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: var(--dourado-ciede);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.login-box .btn-gold {
+    width: 100%; /* Botão ocupando toda a largura no form */
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.05rem;
+}
+
+/* =========================================
+   RESPONSIVO DO LOGIN (Celulares)
+========================================= */
+@media (max-width: 768px) {
+    .pagina-login {
+        flex-direction: column; /* Empilha a foto em cima e o form embaixo */
+        height: auto;
+        min-height: 100vh;
+        overflow: auto; /* Permite rolagem no celular */
+    }
+    
+    .pagina-login .login-brand {
+        flex: none;
+        padding: 50px 20px;
+    }
+
+    .pagina-login .brand-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .logo-login {
+        max-width: 130px;
+    }
+}
