@@ -26,7 +26,7 @@ exports.deleteById = (id) => {
   });
 };
 
-exports.criar = (nome, email, mensagem) => {
+exports.create = (nome, email, mensagem) => {
   return new Promise((resolve, reject) => {
     // Insere os dados na tabela e usa os '?' para evitar SQL Injection
     db.run(
