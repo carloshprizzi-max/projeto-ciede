@@ -40,7 +40,7 @@
             <a href="/pages/quem-somos.html">Quem Somos</a>
             <a href="/pages/revista.html">Revista RIEDE</a>
             <a href="/pages/pesquisas.html">Pesquisa e Publicações</a>
-            <a href="/pages/eventos.html">Eventos</a>
+            <a href="/pages/eventos.html" class="active">Eventos</a>
             <a href="/pages/parcerias.html">Parcerias</a>
             <a href="/pages/contato.html" class="btn-nav-contato">Contato</a>
         </nav>
@@ -49,79 +49,24 @@
 
 <main>
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <h1>Eventos</h1>
-      <p>Congressos, seminários e atividades acadêmicas</p>
-    </div>
+  <section class="internal-hero">
+    <h1>Agenda de Eventos</h1>
   </section>
 
-  <!-- AGENDA -->
-  <section class="section">
-    <div class="container">
-
-      <h2>Próximos Eventos</h2>
-
-      <div class="agenda">
-
-        <!-- EVENTO -->
-        <div class="evento-item">
-          
-          <div class="data">
-            <span class="dia">15</span>
-            <span class="mes">MAR</span>
-          </div>
-
-          <div class="conteudo">
-            <h3>Congresso Internacional de Direito e Economia</h3>
-            <p class="meta">Presencial • Curitiba - PR</p>
-            <p class="descricao">
-              Evento com pesquisadores nacionais e internacionais discutindo temas contemporâneos.
-            </p>
-          </div>
-
-          <div class="status aberto">Inscrições abertas</div>
-
-        </div>
-
-        <!-- EVENTO -->
-        <div class="evento-item">
-
-          <div class="data">
-            <span class="dia">28</span>
-            <span class="mes">ABR</span>
-          </div>
-
-          <div class="conteudo">
-            <h3>Workshop de Pesquisa Científica</h3>
-            <p class="meta">Online</p>
-            <p class="descricao">
-              Metodologia de pesquisa aplicada à Análise Econômica do Direito.
-            </p>
-          </div>
-
-          <div class="status breve">Em breve</div>
-
-        </div>
-
+  <section class="eventos-publicos" style="padding: 80px 20px; background-color: #FAFAFA; min-height: 50vh;">
+      <div class="container" id="container-eventos">
+          <p style="text-align: center; color: #64748b; font-size: 1.1rem;">Carregando a agenda do CIEDE...</p>
       </div>
-
-    </div>
   </section>
 
 </main>
 
 <footer class="footer">
   <div class="container footer-content">
-
     <div class="footer-col">
       <h3>CIEDE</h3>
-      <p>
-        Centro Internacional de Estudos de Direito e Economia.
-      </p>
+      <p>Centro Internacional de Estudos de Direito e Economia.</p>
     </div>
-
     <div class="footer-col">
       <h3>Navegação</h3>
       <ul>
@@ -133,28 +78,23 @@
         <li><a href="parcerias.html">Parcerias</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h3>Contato</h3>
       <p>Email: contato@ciede.com</p>
       <p>Curitiba - PR</p>
     </div>
-
     <div class="footer-col">
       <h3>Redes</h3>
-      <a href="https://instagram.com" target="_blank">
-        Instagram
-      </a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     <p>© 2026 CIEDE - Todos os direitos reservados</p>
   </div>
 </footer>
 
 <script>
+    // 1. Menu Hambúrguer
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
 
@@ -163,6 +103,48 @@
             navLinks.classList.toggle('active');
         });
     }
+
+    // 2. Motor do CMS de Eventos
+    const API_URL = "https://projeto-ciede.onrender.com";
+
+    async function carregarAgendaPublica() {
+        const container = document.getElementById('container-eventos');
+        
+        try {
+            const res = await fetch(`${API_URL}/eventos`);
+            const eventos = await res.json();
+
+            if (eventos.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                        <h3 style="color: #0A1B2A; margin-bottom: 10px;">Agenda Aberta</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Nenhum evento programado no momento. Fique atento às nossas atualizações e redes sociais.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="grid-eventos-dinamico">
+                    ${eventos.map(ev => {
+                        const dataBR = ev.data_evento.split('-').reverse().join('/');
+                        return `
+                            <div class="evento-card-premium">
+                                <span class="evento-data-badge">📅 ${dataBR}</span>
+                                <h3 class="evento-titulo">${ev.nome}</h3>
+                                <div class="evento-local">📍 ${ev.local}</div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            
+        } catch (err) {
+            console.error("Erro ao puxar a agenda:", err);
+            container.innerHTML = '<p style="text-align: center; color: #ef4444;">Erro ao carregar a agenda de eventos. Tente novamente mais tarde.</p>';
+        }
+    }
+
+    carregarAgendaPublica();
 </script>
 <script src="../js/script.js" defer></script>
 </body>
