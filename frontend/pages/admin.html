@@ -2,34 +2,72 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Painel - Mensagens</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIEDE | Painel Administrativo</title>
   <link rel="icon" type="image/png" href="../img/logo1.png">
   <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="admin-dashboard">
 
-  <div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>CIEDE</h2>
+      <p>Gestão Institucional</p>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">Mensagens</a>
+      <a href="#" class="nav-item disabled" title="Em breve">Eventos (Breve)</a>
+      <a href="#" class="nav-item disabled" title="Em breve">Revista (Breve)</a>
+    </nav>
 
-    <h1>Painel de Mensagens</h1>
+    <div class="sidebar-footer">
+      <button onclick="logout()" class="btn-logout">Sair do Sistema</button>
+    </div>
+  </aside>
 
-    <button onclick="logout()">Sair</button>
+  <main class="main-content">
+    
+    <header class="top-header">
+      <h1>Caixa de Entrada</h1>
+      <span class="user-badge">Admin</span>
+    </header>
 
-    <table class="tabela">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Mensagem</th>
-          <th>Data</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
+    <div class="kpi-container">
+      <div class="kpi-card">
+        <h3>Total de Mensagens</h3>
+        <p class="kpi-number" id="total-mensagens">0</p>
+      </div>
+      <div class="kpi-card">
+        <h3>Status do Servidor</h3>
+        <p class="kpi-status online">Online e Seguro</p>
+      </div>
+    </div>
 
-      <tbody id="tabela-mensagens"></tbody>
-    </table>
+    <div class="table-card">
+      <div class="table-header">
+        <h2>Mensagens Recebidas</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="tabela-premium">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Mensagem</th>
+              <th>Data</th>
+              <th style="text-align: right;">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-mensagens">
+            </tbody>
+        </table>
+      </div>
+    </div>
 
-  </div>
+  </main>
 
 <script>
   const API = "https://projeto-ciede.onrender.com";
@@ -37,7 +75,6 @@
   // 🔐 proteção de acesso
   function verificarAuth() {
     const token = localStorage.getItem("token");
-
     if (!token) {
       window.location.href = "/pages/login.html";
     }
@@ -45,7 +82,6 @@
 
   function getHeaders() {
     const token = localStorage.getItem("token");
-
     return {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + token
@@ -58,40 +94,37 @@
       headers: getHeaders()
     });
 
-    console.log("STATUS:", res.status);
-
-    // 1. Tratamento de token expirado ou inválido
     if (res.status === 401 || res.status === 403) {
       alert("Sessão expirada. Faça login novamente.");
       logout();
       return;
     }
 
-    // 2. NOVA TRAVA: Interrompe a execução se o status for 500, 404, etc.
     if (!res.ok) {
       throw new Error(`Erro no servidor. Status: ${res.status}`);
     }
 
     const data = await res.json();
 
-    // 3. TRAVA EXTRA: Garante que os dados são uma lista antes de tentar iterar
     if (!Array.isArray(data)) {
       throw new Error("Os dados recebidos não estão no formato de lista (array).");
     }
 
     const tabela = document.getElementById("tabela-mensagens");
+    const kpiTotal = document.getElementById("total-mensagens");
 
-    // Tratamento para quando não houver mensagens no banco
+    // Atualiza o Card de Total de Mensagens dinamicamente
+    kpiTotal.innerText = data.length;
+
     if (data.length === 0) {
       tabela.innerHTML = `
         <tr>
-          <td colspan="5" style="text-align: center;">Nenhuma mensagem recebida ainda.</td>
+          <td colspan="5" style="text-align: center; padding: 30px; color: #888;">Nenhuma mensagem recebida ainda.</td>
         </tr>
       `;
       return;
     }
 
-    // 4. OTIMIZAÇÃO: Monta todo o HTML na memória antes de jogar na tela
     const linhasHTML = data.map(msg => {
       const dataFormatada = msg.data
         ? new Date(msg.data).toLocaleDateString('pt-BR')
@@ -99,18 +132,17 @@
 
       return `
         <tr>
-          <td>${msg.nome}</td>
-          <td>${msg.email}</td>
-          <td>${msg.mensagem}</td>
-          <td>${dataFormatada}</td>
-          <td>
-            <button onclick="excluir(${msg.id})">Excluir</button>
+          <td class="fw-500">${msg.nome}</td>
+          <td><a href="mailto:${msg.email}" class="link-email">${msg.email}</a></td>
+          <td class="td-mensagem">${msg.mensagem}</td>
+          <td class="td-data">${dataFormatada}</td>
+          <td style="text-align: right;">
+            <button class="btn-excluir" onclick="excluir(${msg.id})">Excluir</button>
           </td>
         </tr>
       `;
-    }).join(''); // Junta o array gerado pelo map em uma única string de texto
+    }).join(''); 
 
-    // Atualiza a tabela uma única vez (melhor performance)
     tabela.innerHTML = linhasHTML;
 
   } catch (err) {
@@ -120,7 +152,7 @@
 }
 
   async function excluir(id) {
-    if (!confirm("Deseja excluir esta mensagem?")) return;
+    if (!confirm("Tem certeza que deseja excluir esta mensagem? Esta ação não pode ser desfeita.")) return;
 
     try {
       await fetch(`${API}/mensagens/${id}`, {
