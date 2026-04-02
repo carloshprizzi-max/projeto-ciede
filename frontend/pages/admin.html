@@ -35,18 +35,22 @@
   const API = "https://projeto-ciede.onrender.com";
 
   // 🔐 proteção de acesso
-  if (!token) {
-    window.location.href = "/pages/login.html";
+  function verificarAuth() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/pages/login.html";
+    }
   }
 
   function getHeaders() {
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  return {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + token
-  };
-}
+    return {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    };
+  }
 
   async function carregarMensagens() {
     try {
@@ -54,12 +58,13 @@
         headers: getHeaders()
       });
 
+      console.log("STATUS:", res.status);
+
       if (res.status === 401 || res.status === 403) {
         alert("Sessão expirada");
         logout();
         return;
       }
-      console.log("STATUS:", res.status);
 
       const data = await res.json();
 
@@ -71,7 +76,7 @@
           ? new Date(msg.data).toLocaleDateString('pt-BR')
           : "Sem data";
 
-        const linha = `
+        tabela.innerHTML += `
           <tr>
             <td>${msg.nome}</td>
             <td>${msg.email}</td>
@@ -82,8 +87,6 @@
             </td>
           </tr>
         `;
-
-        tabela.innerHTML += linha;
       });
 
     } catch (err) {
@@ -114,6 +117,8 @@
     window.location.href = "/pages/login.html";
   }
 
+  // 🚀 inicialização
+  verificarAuth();
   carregarMensagens();
 </script>
 
