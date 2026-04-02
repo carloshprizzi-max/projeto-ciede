@@ -1293,6 +1293,158 @@ button:hover {
     filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3)); 
 }
 
+/* =========================================
+   HOME PREMIUM - NAVBAR E HERO
+========================================= */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+.navbar-premium {
+    background-color: #0A1B2A; /* Azul Institucional */
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+}
+
+.navbar-logo {
+    height: 50px; /* Ajuste conforme necessário */
+    width: auto;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+}
+
+.brand-text {
+    color: #D4AF37;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.navbar-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover, 
+.navbar-links a.active {
+    color: #D4AF37;
+}
+
+.btn-nav-contato {
+    border: 1px solid #D4AF37;
+    padding: 8px 20px;
+    border-radius: 4px;
+    color: #D4AF37 !important;
+}
+
+.btn-nav-contato:hover {
+    background-color: #D4AF37;
+    color: #0A1B2A !important;
+}
+
+/* HERO SECTION (BANNER) */
+.hero-premium {
+    /* Mágica da profundidade: Degradê escuro + Imagem */
+    background-image: linear-gradient(rgba(10, 27, 42, 0.8), rgba(10, 27, 42, 0.95)), url('../img/bg-direito.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Cria um efeito Paralax super elegante */
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.hero-content h1 {
+    color: #ffffff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* BOTÕES PREMIUM */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-gold {
+    background-color: #D4AF37;
+    color: #0A1B2A;
+    padding: 15px 35px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:hover {
+    background-color: #e5c158;
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 13px 35px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #ffffff;
+    color: #0A1B2A;
+}
+
 /* =========================
    RESPONSIVO
 ========================= */
