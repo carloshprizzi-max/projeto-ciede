@@ -25,3 +25,17 @@ exports.deleteById = (id) => {
     });
   });
 };
+
+exports.criar = (nome, email, mensagem) => {
+  return new Promise((resolve, reject) => {
+    // Insere os dados na tabela e usa os '?' para evitar SQL Injection
+    db.run(
+      "INSERT INTO mensagens (nome, email, mensagem) VALUES (?, ?, ?)", 
+      [nome, email, mensagem], 
+      function (err) {
+        if (err) reject(err);
+        else resolve(this.lastID); // Devolve o ID da mensagem criada
+      }
+    );
+  });
+};

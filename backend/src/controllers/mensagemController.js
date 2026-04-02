@@ -4,9 +4,15 @@ exports.criar = async (req, res) => {
   try {
     const { nome, email, mensagem } = req.body;
     await service.criar(nome, email, mensagem);
-    res.json({ mensagem: "Mensagem salva com sucesso!" });
+    
+    // Resposta de sucesso que o frontend espera ler
+    res.status(201).json({ mensagem: "Mensagem enviada com sucesso!" }); 
   } catch (err) {
-    res.status(500).json({ erro: err.message });
+    // 👇 NOSSO ESPIÃO PARA DESCOBRIR O MOTIVO DO ERRO 500 👇
+    console.error("💥 ERRO FATAL AO SALVAR MENSAGEM:", err);
+    
+    // Resposta de erro formatada para o frontend não dar "undefined"
+    res.status(500).json({ erro: "Erro interno ao enviar a mensagem." });
   }
 };
 
