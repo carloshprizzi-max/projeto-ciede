@@ -1450,65 +1450,62 @@ body {
 ========================= */
 @media (max-width: 768px) {
   /* ------------------------------------------- */
-  /*    NOVO HEADER E MENU HAMBÚRGUER            */
+  /* NOVO HEADER PREMIUM E MENU HAMBÚRGUER    */
   /* ------------------------------------------- */
-  .header-content {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   width: 100%;
-   position: relative;
-   padding: 20px;
-   box-sizing: border-box;
-}
-
-  /* Mostra as 3 barrinhas do botão apenas no celular */
-  .menu-toggle {
-   display: flex;
-   flex-direction: column;
-   cursor: pointer;
-   gap: 5px;
-   margin-left: auto; /* Esse é o ímã que puxa ele para a direita! */
-}
-
-  .menu-toggle .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff; /* Cor das barras */
-    transition: all 0.3s ease;
-  }
-
-     /* Tira a caixa mãe do caminho para o hambúrguer colar na direita */
-  .menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-  }
   
-  /* Esconde a lista original e prepara a janela que vai descer */
-  .menu ul {
+  /* Faz o botão hambúrguer aparecer na tela menor */
+  .menu-toggle {
+    display: flex; 
+  }
+
+  /* Esconde a barra de links original e prepara a janela suspensa */
+  .navbar-links {
     display: none; /* Fica escondido até clicar */
     flex-direction: column;
     width: 100%;
     position: absolute;
     top: 100%; /* Desce logo abaixo do header */
     left: 0;
-    background-color: #0b1f38; /* Fundo azul escuro */
+    background-color: #0A1B2A; /* Fundo azul institucional */
     padding: 20px 0;
     z-index: 1000;
-  }
-
-  .menu ul li {
-    text-align: center;
-    padding: 15px 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
   }
 
   /* Classe ativada pelo JavaScript quando clica no botão */
-  .menu ul.active {
+  .navbar-links.active {
     display: flex;
   }
 
+  /* Ajusta o espaçamento e alinhamento dos links no celular */
+  .navbar-links a {
+    text-align: center;
+    padding: 15px 0;
+    margin-left: 0; /* Remove o espaçamento lateral que existia no PC */
+    display: block;
+  }
+
+  /* ------------------------------------------- */
+  /* AJUSTES DO NOVO BANNER NO CELULAR        */
+  /* ------------------------------------------- */
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+  }
+
+  .btn-gold, .btn-outline {
+    width: 100%; /* Botões preenchendo a tela toda para ficar elegante */
+    box-sizing: border-box;
+  }
+
+  /* ------------------------------------------- */
+  /* MANTENDO O RESTO DO SEU SITE RESPONSIVO  */
+  /* ------------------------------------------- */
   .cards,
   .eventos-grid,
   .parcerias-grid,
@@ -1519,9 +1516,5 @@ body {
 
   .contato-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: 26px;
   }
 }
