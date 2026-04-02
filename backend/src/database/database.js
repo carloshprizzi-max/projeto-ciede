@@ -21,6 +21,21 @@ db.serialize(() => {
           console.log("✅ Conexão central: Tabela 'mensagens' 100% pronta!");
       }
   });
+    
+    db.run(`
+      CREATE TABLE IF NOT EXISTS eventos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        data_evento TEXT NOT NULL,
+        local TEXT NOT NULL,
+        data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+  `, (err) => {
+      if (err) console.error("❌ Erro ao criar tabela de eventos:", err.message);
+      else console.log("✅ Tabela 'eventos' pronta!");
+  });
 });
+
+
 // Exporta a conexão para o resto do sistema usar
 module.exports = db;

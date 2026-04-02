@@ -18,9 +18,12 @@ app.get("/", (req, res) => {
 // rotas
 const mensagemRoutes = require("./src/routes/mensagemRoutes");
 const authRoutes = require("./src/routes/authRoutes");
+const eventoRoutes = require("./src/routes/eventoRoutes");
+
 
 app.use("/", mensagemRoutes);
 app.use("/auth", authRoutes);
+app.use(eventoRoutes);
 
 // start
 const PORT = process.env.PORT || 3000;

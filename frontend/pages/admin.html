@@ -78,24 +78,26 @@
         <h3 style="color: #0A1B2A; font-size: 1.1rem; margin-bottom: 20px;">Cadastrar Novo Evento</h3>
         
         <form id="form-eventos" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          
           <div class="input-group" style="grid-column: span 2;">
             <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">NOME DO EVENTO</label>
-            <input type="text" placeholder="Ex: I Congresso Internacional de Direito..." style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+            <input type="text" id="evento-nome" placeholder="Ex: I Congresso Internacional de Direito..." style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
           </div>
           
           <div class="input-group">
             <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">DATA DO EVENTO</label>
-            <input type="date" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+            <input type="date" id="evento-data" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
           </div>
 
           <div class="input-group">
             <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">LOCAL / LINK</label>
-            <input type="text" placeholder="Ex: Auditório Principal ou Link do Zoom" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+            <input type="text" id="evento-local" placeholder="Ex: Auditório Principal ou Link do Zoom" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
           </div>
 
           <div class="input-group" style="grid-column: span 2;">
-            <button type="submit" class="btn-gold" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Publicar Evento</button>
+            <button type="submit" class="btn-gold" style="width: 100%; border: none; padding: 12px; cursor: pointer; background-color: #0A1B2A; color: white;">Publicar Evento</button>
           </div>
+
         </form>
       </div>
 
@@ -271,6 +273,94 @@
   // 🚀 inicialização
   verificarAuth();
   carregarMensagens();
+
+  // ==========================================
+  // MOTOR DO CMS DE EVENTOS
+  // ==========================================
+  const formEventos = document.getElementById("form-eventos");
+
+  // 1. PUBLICAR EVENTO
+  formEventos.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const nome = document.getElementById("evento-nome").value;
+    const data = document.getElementById("evento-data").value;
+    const local = document.getElementById("evento-local").value;
+
+    const btnSubmit = formEventos.querySelector('button[type="submit"]');
+    btnSubmit.innerText = "Publicando...";
+
+    try {
+      const res = await fetch(`${API}/eventos`, {
+        method: "POST",
+        headers: getHeaders(),
+        body: JSON.stringify({ nome, data, local })
+      });
+
+      if (!res.ok) throw new Error("Erro ao salvar");
+      
+      alert("Evento publicado com sucesso!");
+      formEventos.reset(); // Limpa os campos
+      carregarEventos();   // Atualiza a tabela na hora
+
+    } catch (err) {
+      alert("Erro ao publicar o evento.");
+      console.error(err);
+    } finally {
+      btnSubmit.innerText = "Publicar Evento";
+    }
+  });
+
+  // 2. LISTAR EVENTOS
+  async function carregarEventos() {
+    try {
+      const res = await fetch(`${API}/eventos`); // Rota pública
+      const data = await res.json();
+      
+      // Seleciona o <tbody> da tabela de eventos (garanta que só haja um tbody lá!)
+      const tabela = document.querySelector("#section-eventos tbody");
+      
+      if (data.length === 0) {
+        tabela.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 20px; color: #888;">Nenhum evento publicado.</td></tr>`;
+        return;
+      }
+
+      tabela.innerHTML = data.map(ev => {
+        // Ajusta a data do formato AAAA-MM-DD para DD/MM/AAAA
+        const dataBR = ev.data_evento.split('-').reverse().join('/');
+        return `
+          <tr>
+            <td class="fw-500">${ev.nome}</td>
+            <td>${dataBR}</td>
+            <td>${ev.local}</td>
+            <td style="text-align: right;">
+              <button class="btn-excluir" onclick="excluirEvento(${ev.id})">Excluir</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    } catch (err) {
+      console.error("Erro ao carregar eventos:", err);
+    }
+  }
+
+  // 3. EXCLUIR EVENTO
+  async function excluirEvento(id) {
+    if (!confirm("Tem certeza que deseja excluir este evento? A página do site será atualizada imediatamente.")) return;
+    try {
+      await fetch(`${API}/eventos/${id}`, {
+        method: "DELETE",
+        headers: getHeaders()
+      });
+      carregarEventos(); // Recarrega a tabela após excluir
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // 🚀 Mande carregar os eventos assim que a página abrir
+  carregarEventos();
+
 </script>
 
 </body>
