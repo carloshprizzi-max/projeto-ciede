@@ -1,50 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Admin</title>
-  <link rel="icon" type="image/png" href="../img/logo1.png">
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIEDE | Acesso Restrito</title>
+    <link rel="icon" type="image/png" href="../img/logo1.png">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="pagina-login"> <div class="login-container">
+        
+        <div class="login-brand">
+            <div class="brand-content">
+                <h1>CIEDE</h1>
+                <p>Centro Internacional de Estudos<br>de Direito e Economia</p>
+                <div class="divider"></div>
+                <span class="badge">Painel de Gestão</span>
+            </div>
+        </div>
 
-  <h2>Login Administrativo</h2>
+        <div class="login-form-section">
+            <div class="form-wrapper">
+                <h2>Acesso Restrito</h2>
+                <p class="subtitle">Insira suas credenciais para gerenciar a plataforma.</p>
 
-  <form id="loginForm">
-    <input type="email" id="email" placeholder="Email" required />
-    <br><br>
-    <input type="password" id="senha" placeholder="Senha" required />
-    <br><br>
-    <button type="submit">Entrar</button>
-  </form>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="email">E-mail Institucional</label>
+                        <input type="email" id="email" required placeholder="admin@ciede.com">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" required placeholder="••••••••">
+                    </div>
 
-  <script>
-    const form = document.getElementById("loginForm");
+                    <button type="submit" id="btn-login">Entrar no Sistema</button>
+                </form>
+                
+                <div class="form-footer">
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    <script>
+        const form = document.getElementById("loginForm");
+        const btnLogin = document.getElementById("btn-login");
 
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-      const res = await fetch("/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, senha })
-      });
+            // Muda o texto do botão para dar feedback pro cliente
+            const textoOriginal = btnLogin.innerText;
+            btnLogin.innerText = "Autenticando...";
+            btnLogin.disabled = true;
 
-      const data = await res.json();
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        window.location.href = "/pages/admin.html";
-      } else {
-        alert("Login inválido");
-      }
-    });
-  </script>
+            try {
+                // A sua rota original que já estava funcionando
+                const res = await fetch("/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await res.json();
+
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "/pages/admin.html";
+                } else {
+                    alert("Login inválido. Verifique suas credenciais.");
+                    btnLogin.innerText = textoOriginal;
+                    btnLogin.disabled = false;
+                }
+            } catch (erro) {
+                console.error("Erro na requisição:", erro);
+                alert("Erro ao conectar com o servidor.");
+                btnLogin.innerText = textoOriginal;
+                btnLogin.disabled = false;
+            }
+        });
+    </script>
 
 </body>
 </html>

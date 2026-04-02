@@ -855,6 +855,184 @@ button:hover {
   background-color: #c9302c;
 }
 
+/* =========================================
+   ESTILOS EXCLUSIVOS DA TELA DE LOGIN
+========================================= */
+.pagina-login {
+    background-color: #FAFAFA;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.pagina-login .login-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.pagina-login .login-brand {
+    flex: 1;
+    background-color: #0A1B2A; /* Azul CIEDE */
+    color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.pagina-login .brand-content h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #D4AF37; /* Dourado CIEDE */
+    margin-bottom: 10px;
+}
+
+.pagina-login .brand-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.pagina-login .divider {
+    height: 3px;
+    width: 60px;
+    background-color: #D4AF37;
+    margin: 30px 0;
+}
+
+.pagina-login .badge {
+    background: rgba(212, 175, 55, 0.15);
+    color: #D4AF37;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.pagina-login .login-form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.pagina-login .form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+}
+
+.pagina-login .form-wrapper h2 {
+    font-size: 2rem;
+    color: #0A1B2A;
+    margin-bottom: 10px;
+}
+
+.pagina-login .subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+.pagina-login .input-group {
+    margin-bottom: 25px;
+}
+
+.pagina-login .input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0A1B2A;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pagina-login .input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #FAFAFA;
+    box-sizing: border-box;
+}
+
+.pagina-login .input-group input:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    background-color: #fff;
+}
+
+.pagina-login button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #0A1B2A;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.pagina-login button[type="submit"]:hover:not(:disabled) {
+    background-color: #D4AF37;
+}
+
+.pagina-login button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.pagina-login .form-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.pagina-login .form-footer a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.pagina-login .form-footer a:hover {
+    color: #D4AF37;
+}
+
+/* Responsividade Celular */
+@media (max-width: 768px) {
+    .pagina-login .login-container {
+        flex-direction: column;
+    }
+    .pagina-login .login-brand {
+        flex: 0.4;
+        padding: 30px;
+        text-align: center;
+    }
+    .pagina-login .divider {
+        margin: 20px auto;
+    }
+    .pagina-login .login-form-section {
+        flex: 0.6;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+}
+
 /* =========================
    RESPONSIVO
 ========================= */
