@@ -50,52 +50,41 @@
 </header>
 
   <!-- CONTEÚDO -->
- <main>
-
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <h1>Contato</h1>
-      <p>Entre em contato com o CIEDE</p>
-    </div>
+ <<main>
+  <section class="internal-hero">
+    <h1>Fale Conosco</h1>
   </section>
 
-  <!-- CONTATO -->
-  <section class="section">
-    <div class="container contato-grid">
+  <section class="premium-section">
+    <div class="premium-container" style="max-width: 800px;">
+      
+      <div class="premium-text-block">
+        <h2>Envie sua Mensagem</h2>
+        <p style="margin-bottom: 30px;">Tem alguma dúvida sobre nossos eventos, revistas ou parcerias? Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+        
+        <form id="form-contato" style="display: grid; gap: 20px;">
+          
+          <div class="input-group">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">NOME COMPLETO</label>
+            <input type="text" id="nome" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" required>
+          </div>
+          
+          <div class="input-group">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">E-MAIL</label>
+            <input type="email" id="email" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" required>
+          </div>
 
-      <!-- FORMULÁRIO -->
-      <div class="contato-form">
+          <div class="input-group">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 8px;">MENSAGEM</label>
+            <textarea id="mensagem" rows="5" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; resize: vertical;" required></textarea>
+          </div>
 
-        <h2>Fale Conosco</h2>
-
-        <form id="form-contato">
-          <input type="text" name="nome" placeholder="Nome completo" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <textarea name="mensagem" placeholder="Mensagem" rows="5"></textarea>
-          <button type="submit">Enviar mensagem</button>
+          <button type="submit" id="btn-enviar-contato" class="btn-gold" style="border: none; cursor: pointer; width: 100%; margin-top: 10px;">Enviar Mensagem</button>
         </form>
 
       </div>
-
-      <!-- INFORMAÇÕES -->
-      <div class="contato-info">
-
-        <h2>Informações</h2>
-
-        <p><strong>Email:</strong> contato@ciede.com</p>
-        <p><strong>Localização:</strong> Curitiba - PR</p>
-
-        <p class="info-extra">
-          O CIEDE está disponível para colaborações acadêmicas,
-          eventos e parcerias institucionais.
-        </p>
-
-      </div>
-
     </div>
   </section>
-
 </main>
 
   <!-- FOOTER -->
@@ -141,17 +130,51 @@
   </div>
 </footer>
 
-  <!-- SCRIPT -->
-   <script>
+  <script>
+    // Script do Menu
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
-
     if (mobileMenu && navLinks) {
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        mobileMenu.addEventListener('click', () => { navLinks.classList.toggle('active'); });
     }
-  </script>
+
+    // Script do Formulário de Mensagem
+    const formContato = document.getElementById('form-contato');
+    const btnEnviar = document.getElementById('btn-enviar-contato');
+
+    formContato.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const textoOriginal = btnEnviar.innerText;
+        btnEnviar.innerText = 'Enviando...';
+        btnEnviar.disabled = true;
+
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        try {
+            const res = await fetch('https://projeto-ciede.onrender.com/mensagens', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, mensagem })
+            });
+
+            if (res.ok) {
+                alert('Sua mensagem foi enviada com sucesso! Retornaremos em breve.');
+                formContato.reset();
+            } else {
+                alert('Ocorreu um erro. Verifique os dados e tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro de conexão com o servidor.');
+        } finally {
+            btnEnviar.innerText = textoOriginal;
+            btnEnviar.disabled = false;
+        }
+    });
+</script>
   <script src="../js/script.js"></script>
 
 </body>

@@ -1517,6 +1517,69 @@ body {
 }
 
 /* =========================================
+   CONTEÚDO INTERNO PREMIUM (Páginas de Texto)
+========================================= */
+.premium-section {
+    padding: 80px 20px;
+    background-color: #FAFAFA;
+}
+
+.premium-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.premium-text-block {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border-top: 4px solid #D4AF37; /* Detalhe dourado no topo */
+    margin-bottom: 40px;
+}
+
+.premium-text-block h2 {
+    color: #0A1B2A;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.premium-text-block p {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Grids para Pesquisas e Parcerias */
+.premium-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.premium-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s;
+}
+
+.premium-card:hover {
+    border-color: #D4AF37;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+}
+
+.premium-card h3 {
+    color: #0A1B2A;
+    margin-top: 0;
+}
+
+/* =========================================
    MENU HAMBÚRGUER (Base - Escondido no PC)
 ========================================= */
 .menu-toggle {
