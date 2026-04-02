@@ -19,8 +19,8 @@
     </div>
     
     <nav class="sidebar-nav">
-      <a href="#" class="nav-item active">Mensagens</a>
-      <a href="#" class="nav-item disabled" title="Em breve">Eventos (Breve)</a>
+      <a href="#" id="link-mensagens" class="nav-item active" onclick="mudarAba('mensagens')">Mensagens</a>
+      <a href="#" id="link-eventos" class="nav-item" onclick="mudarAba('eventos')">Eventos</a>
       <a href="#" class="nav-item disabled" title="Em breve">Revista (Breve)</a>
     </nav>
 
@@ -66,6 +66,67 @@
             </tbody>
         </table>
       </div>
+    </div>
+
+    <div id="section-eventos" style="display: none;">
+      
+      <div class="top-header" style="margin-top: 20px;">
+        <h2>Gestão de Eventos</h2>
+      </div>
+
+      <div class="kpi-card" style="margin-bottom: 30px;">
+        <h3 style="color: #0A1B2A; font-size: 1.1rem; margin-bottom: 20px;">Cadastrar Novo Evento</h3>
+        
+        <form id="form-eventos" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="input-group" style="grid-column: span 2;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">NOME DO EVENTO</label>
+            <input type="text" placeholder="Ex: I Congresso Internacional de Direito..." style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+          </div>
+          
+          <div class="input-group">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">DATA DO EVENTO</label>
+            <input type="date" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+          </div>
+
+          <div class="input-group">
+            <label style="font-size: 0.85rem; font-weight: 600; color: #64748b;">LOCAL / LINK</label>
+            <input type="text" placeholder="Ex: Auditório Principal ou Link do Zoom" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;" required>
+          </div>
+
+          <div class="input-group" style="grid-column: span 2;">
+            <button type="submit" class="btn-gold" style="width: 100%; border: none; padding: 12px; cursor: pointer;">Publicar Evento</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <h2>Eventos Publicados</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="tabela-premium">
+            <thead>
+              <tr>
+                <th>Evento</th>
+                <th>Data</th>
+                <th>Local</th>
+                <th style="text-align: right;">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-500">I Congresso de Regulação</td>
+                <td>15/05/2026</td>
+                <td>Auditório Central</td>
+                <td style="text-align: right;">
+                  <button class="btn-excluir">Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
 
   </main>
@@ -174,6 +235,39 @@
     window.location.href = "/pages/login.html";
   }
 
+  // 🔄 Função para alternar entre as telas do CMS
+  function mudarAba(aba) {
+    // 1. Pega os elementos da tela
+    const secMensagens = document.querySelector('.table-card'); // A tabela original
+    const secKpis = document.querySelector('.kpi-container'); // Os cards de topo
+    const secEventos = document.getElementById('section-eventos');
+    
+    // 2. Pega os links do menu lateral
+    const linkMensagens = document.getElementById('link-mensagens');
+    const linkEventos = document.getElementById('link-eventos');
+
+    if (aba === 'eventos') {
+      // Esconde mensagens, mostra eventos
+      secMensagens.style.display = 'none';
+      secKpis.style.display = 'none';
+      secEventos.style.display = 'block';
+      
+      // Atualiza o menu lateral (fica dourado)
+      linkMensagens.classList.remove('active');
+      linkEventos.classList.add('active');
+      
+    } else if (aba === 'mensagens') {
+      // Esconde eventos, mostra mensagens
+      secEventos.style.display = 'none';
+      secMensagens.style.display = 'block';
+      secKpis.style.display = 'flex';
+      
+      // Atualiza o menu lateral
+      linkEventos.classList.remove('active');
+      linkMensagens.classList.add('active');
+    }
+  }
+  
   // 🚀 inicialização
   verificarAuth();
   carregarMensagens();
