@@ -22,32 +22,29 @@
 
 <body>
 
-<header class="header">
-  <div class="container header-content">
-
-    <div class="logo">
-      <h1>CIEDE</h1>
+<header class="navbar-premium">
+    <div class="navbar-container">
+        <a href="../index.html" class="brand-link">
+            <img src="../img/logo1.png" alt="Logo CIEDE" class="navbar-logo">
+            <span class="brand-text">CIEDE</span>
+        </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        
+        <nav class="navbar-links" id="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="/pages/quem-somos.html">Quem Somos</a>
+            <a href="/pages/revista.html">Revista RIEDE</a>
+            <a href="/pages/pesquisa.html">Pesquisa e Publicações</a>
+            <a href="/pages/eventos.html">Eventos</a>
+            <a href="/pages/parcerias.html">Parcerias</a>
+            <a href="/pages/contato.html" class="btn-nav-contato">Contato</a>
+        </nav>
     </div>
-
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-
-    <nav class="menu">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="quem-somos.html">Quem Somos</a></li>
-        <li><a href="revista.html">Revista RIEDE</a></li>
-        <li><a href="pesquisas.html">Pesquisa e Publicações</a></li>
-        <li><a href="eventos.html">Eventos</a></li>
-        <li><a href="parcerias.html">Parcerias</a></li>
-        <li><a href="contato.html">Contato</a></li>
-      </ul>
-    </nav>
-
-  </div>
 </header>
 
 <main>
@@ -150,6 +147,16 @@
   </div>
 </footer>
 
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+</script>
 <script src="../js/script.js" defer></script>
 </body>
 </html>
