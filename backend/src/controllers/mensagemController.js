@@ -3,9 +3,7 @@ const service = require("../services/mensagemService");
 exports.criar = async (req, res) => {
   try {
     const { nome, email, mensagem } = req.body;
-
     await service.criar(nome, email, mensagem);
-
     res.json({ mensagem: "Mensagem salva com sucesso!" });
   } catch (err) {
     res.status(500).json({ erro: err.message });
@@ -17,6 +15,8 @@ exports.listar = async (req, res) => {
     const dados = await service.listar();
     res.json(dados);
   } catch (err) {
+    console.error("💥 ERRO FATAL AO LISTAR MENSAGENS:", err);
+    
     res.status(500).json({ erro: err.message });
   }
 };
@@ -24,9 +24,7 @@ exports.listar = async (req, res) => {
 exports.deletar = async (req, res) => {
   try {
     const { id } = req.params;
-
     await service.deletar(id);
-
     res.json({ mensagem: "Mensagem excluída" });
   } catch (err) {
     res.status(500).json({ erro: err.message });
