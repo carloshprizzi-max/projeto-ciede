@@ -1253,6 +1253,30 @@ button:hover {
     }
 }
 
+/* =========================================
+   IDENTIDADE VISUAL - FOTO E LOGOS
+========================================= */
+/* Adicionando a foto de fundo no lado esquerdo do Login com um overlay escuro */
+.pagina-login .login-brand {
+    /* O linear-gradient cria uma camada azul escura semi-transparente por cima da foto */
+    background-image: linear-gradient(rgba(10, 27, 42, 0.85), rgba(10, 27, 42, 0.95)), url('../img/bg-direito.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Tamanho controlado para a logo não quebrar o layout */
+.logo-login {
+    max-width: 140px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.logo-admin {
+    max-width: 100px;
+    margin-bottom: 10px;
+    display: block;
+}
+
 /* =========================
    RESPONSIVO
 ========================= */
