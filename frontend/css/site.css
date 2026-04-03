@@ -339,4 +339,14 @@
     .hero-content h1 { font-size: 2.2rem; }
     .hero-buttons { flex-direction: column; gap: 15px; padding: 0 20px; }
     .btn-gold, .btn-outline { width: 100%; box-sizing: border-box; }
+
+    /* Força qualquer grid premium a virar 1 coluna no celular */
+    .premium-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Dá um respiro nas laterais do card azul de informações para não colar na tela */
+    .premium-grid > .premium-card {
+        padding: 30px 20px !important;
+    }
 }
